@@ -47,17 +47,17 @@ jobs:
             /d:sonar.exclusions="**/.github/**,**/ci/**,**/cd/**,**/build/**,**/test/**"
 
       - name: Restore
-        run: dotnet restore Fiap.FCG.Game.Api.sln
+        run: dotnet restore Fiap.FCG.Payment.Api.sln
 
       - name: Build
-        run: dotnet build Fiap.FCG.Game.Api.sln --configuration Release --no-restore
+        run: dotnet build Fiap.FCG.Payment.Api.sln --configuration Release --no-restore
 
       - name: Test with coverage (OpenCover)
         run: |
-          dotnet test test/Fiap.FCG.Game.Unit.Test/Fiap.FCG.Game.Unit.Test.csproj \
+          dotnet test test/Fiap.FCG.Payment.Unit.Test/Fiap.FCG.Payment.Unit.Test.csproj \
             --configuration Release --no-build --logger "trx;LogFileName=test-results.trx" \
             /p:CollectCoverage=true \
-            /p:CoverletOutput=${{ github.workspace }}/test/Fiap.FCG.Game.Unit.Test/TestResults/coverage.opencover.xml \
+            /p:CoverletOutput=${{ github.workspace }}/test/Fiap.FCG.Payment.Unit.Test/TestResults/coverage.opencover.xml \
             /p:CoverletOutputFormat=opencover
 
       # finaliza e envia a análise para o SonarCloud
